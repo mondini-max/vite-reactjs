@@ -7,17 +7,25 @@ const CartItem = ({ img, title, price, amount }) => {
       <div>
         <h4>{title}</h4>
         <h4 className='item-price'>${price}</h4>
+        {/* remove button */}
         <button className='remove-btn'>remove</button>
       </div>
-      <button className='amount-btn'>
-        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'>
-          <path d='M10 0C4.48 0 0 4.48 0 10s4.48 10 10 10 10-4.48 10-10S15.52 0 10 0zm5 11H5v-2h10v2z' />
-        </svg>
-        <span className='amount'>{amount}</span>
-        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'>
-          <path d='M10 20c5.52 0 10-4.48 10-10S15.52 0 10 0s-10 4.48-10 10s4.48 10 10 10zm-5-9h10v2H5v-2z' />
-        </svg>
-      </button>
+      <div>
+        {/* increase amount */}
+        <button className='amount-btn'>
+          <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'>
+            <path d='M10.707 7.05L10 6.343 4.343 12l1.414 1.414L10 9.172l4.243 4.242L15.657 12z' />
+          </svg>
+        </button>
+        {/* amount */}
+        <p className='amount'>{amount}</p>
+        {/* decrease amount */}
+        <button className='amount-btn'>
+          <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'>
+            <path d='M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z' />
+          </svg>
+        </button>
+      </div>
     </div>
   );
 };
