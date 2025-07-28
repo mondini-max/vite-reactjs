@@ -21,7 +21,7 @@ const Navbar = ({ amount }) => {
 
 const mapStateToProps = (state) => {
   const { amount } = state;
-  console.log('mapStateToProps called', { amount });
+  // console.log('mapStateToProps called', { amount });
   return { amount };
 };
 // const mapDispatchToProps = () => {}

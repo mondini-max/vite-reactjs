@@ -3,7 +3,7 @@ import { cartTypes } from '../types/cartTypes.js';
 
 const initialState = {
   cart: cartItems,
-  total: 0,
+  total: 130.99,
   amount: 5,
 };
 
