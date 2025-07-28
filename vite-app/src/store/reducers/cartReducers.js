@@ -4,7 +4,7 @@ import { cartTypes } from '../types/cartTypes.js';
 const initialState = {
   cart: cartItems,
   total: 0,
-  amount: 0,
+  amount: 5,
 };
 
 export const cartReducers = (state = initialState, action) => {
