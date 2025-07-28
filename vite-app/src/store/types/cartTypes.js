@@ -1,4 +1,4 @@
-export const cartTypes = Object.freeze({
+const cartTypes = Object.freeze({
   INCREASE: 'INCREASE',
   DECREASE: 'DECREASE',
   RESET: 'RESET',
@@ -7,3 +7,13 @@ export const cartTypes = Object.freeze({
   GET_TOTALS: 'GET_TOTALS',
   TOGGLE_AMOUNT: 'TOGGLE_AMOUNT',
 });
+
+export const {
+  INCREASE,
+  DECREASE,
+  REMOVE,
+  RESET,
+  CLEAR_CART,
+  GET_TOTALS,
+  TOGGLE_AMOUNT,
+} = cartTypes;
