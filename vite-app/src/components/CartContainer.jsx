@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import CartItem from './CartItem.jsx';
 import { connect } from 'react-redux';
-import { CLEAR_CART } from '../store/types/cartTypes.js';
+import { CLEAR_CART, GET_TOTALS } from '../store/types/cartTypes.js';
 
 const CartContainer = ({ cart = [], total, dispatch }) => {
+  useEffect(() => {
+    dispatch({ type: GET_TOTALS });
+  }, [dispatch, cart]);
+
   if (cart.length === 0) {
     return (
       <section className='cart'>
@@ -48,7 +52,7 @@ const CartContainer = ({ cart = [], total, dispatch }) => {
 
 const mapStateToProps = (state) => {
   const { cart, total } = state;
-  // console.log('stateToProps called', { cart });
+  // console.log('stateToProps called', { state, cart });
   return { cart, total };
 };
 

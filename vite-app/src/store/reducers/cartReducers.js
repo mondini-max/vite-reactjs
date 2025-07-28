@@ -2,7 +2,7 @@ import cartItems from '../../data/cart-items.js';
 import {
   INCREASE,
   DECREASE,
-  RESET,
+  GET_TOTALS,
   CLEAR_CART,
   REMOVE,
 } from '../types/cartTypes.js';
@@ -66,6 +66,23 @@ export const cartReducers = (state = initialState, action) => {
         ...state,
         cart: tempsNewCart,
       };
+    }
+
+    case GET_TOTALS: {
+      console.log('get totals action dispatched', state, action);
+      const { total, amount } = state.cart.reduce(
+        (cartTotal, cartItem) => {
+          const { price, amount } = cartItem;
+          const itemTotal = price * amount;
+          cartTotal.total += itemTotal;
+          cartTotal.amount += amount;
+          return cartTotal;
+        },
+        { total: 0, amount: 0 }
+      );
+      console.log('calculated totals', { total, amount });
+
+      return { ...state, total: parseFloat(total.toFixed(2)), amount };
     }
 
     case REMOVE:
