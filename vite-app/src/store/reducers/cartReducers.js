@@ -9,8 +9,8 @@ import {
 
 const initialState = {
   cart: cartItems,
-  total: 130.99,
-  amount: 5,
+  total: 0,
+  amount: 0,
 };
 
 export const cartReducers = (state = initialState, action) => {
@@ -34,7 +34,16 @@ export const cartReducers = (state = initialState, action) => {
   switch (action.type) {
     case INCREASE:
       console.log('increase action dispatched', state, action);
-      return { ...state, amount: state.amount + 1 };
+
+      return {
+        ...state,
+        cart: state.cart.map((item) => {
+          if (item.id === action.payload.id) {
+            return { ...item, amount: item.amount + 1 };
+          }
+          return item;
+        }),
+      };
 
     case DECREASE:
       console.log('decrease action dispatched', state, action);
