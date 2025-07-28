@@ -1,6 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { REMOVE, INCREASE, DECREASE } from '../store/types/cartTypes.js';
 
-const CartItem = ({ img, title, price, amount }) => {
+const CartItem = ({
+  img,
+  title,
+  price,
+  amount,
+  remove,
+  increase,
+  decrease,
+}) => {
   return (
     <div className='cart-item'>
       <img src={img} alt={title} />
@@ -8,7 +18,9 @@ const CartItem = ({ img, title, price, amount }) => {
         <h4>{title}</h4>
         <h4 className='item-price'>${price}</h4>
         {/* remove button */}
-        <button className='remove-btn'>remove</button>
+        <button className='remove-btn' onClick={() => remove()}>
+          remove
+        </button>
       </div>
       <div>
         {/* increase amount */}
@@ -30,4 +42,14 @@ const CartItem = ({ img, title, price, amount }) => {
   );
 };
 
-export default CartItem;
+const mapDispatchToProps = (dispatch, ownProps) => {
+  // console.log('mapDispatchToProps ownProps called', { ownProps });
+  const { id } = ownProps;
+
+  const remove = () => dispatch({ type: REMOVE, payload: { id } });
+  const increase = () => dispatch({ type: INCREASE });
+  const decrease = () => dispatch({ type: DECREASE });
+  return { remove, increase, decrease };
+};
+
+export default connect(null, mapDispatchToProps)(CartItem);
