@@ -1,6 +1,7 @@
 import React from 'react';
 import CartItem from './CartItem.jsx';
 import { connect } from 'react-redux';
+// import { CLEAR_CART } from '../store/actions/cartActions.js';
 
 const CartContainer = ({ cart = [], total }) => {
   if (cart.length === 0) {
@@ -36,10 +37,10 @@ const CartContainer = ({ cart = [], total }) => {
   );
 };
 
-const stateToProps = (state) => {
+const mapStateToProps = (state) => {
   const { cart, total } = state;
   // console.log('stateToProps called', { cart });
   return { cart, total };
 };
 
-export default connect(stateToProps)(CartContainer);
+export default connect(mapStateToProps)(CartContainer);
