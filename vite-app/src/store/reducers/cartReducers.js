@@ -85,14 +85,15 @@ export const cartReducers = (state = initialState, action) => {
       return { ...state, total: parseFloat(total.toFixed(2)), amount };
     }
 
-    case REMOVE:
-      console.log('remove action dispatched', state, action.payload.id);
+    case REMOVE: {
+      console.log('remove action disptached ', state, action.payload);
+      const id = action.payload.id;
+      const newCart = state.cart.filter((cartItem) => cartItem.id !== id);
       return {
         ...state,
-        cart: state.cart.filter(
-          (cartItem) => cartItem.id !== action.payload.id
-        ),
+        cart: newCart,
       };
+    }
 
     case CLEAR_CART:
       console.log('clear cart action dispatched', state, action);
