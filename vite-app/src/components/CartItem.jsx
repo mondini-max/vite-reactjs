@@ -48,7 +48,14 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
   const remove = () => dispatch({ type: REMOVE, payload: { id } });
   const increase = () => dispatch({ type: INCREASE, payload: { id, amount } });
-  const decrease = () => dispatch({ type: DECREASE, payload: { id, amount } });
+  const decrease = () => {
+    if (amount <= 1) {
+      console.log('amount is 1, removing item');
+      return remove();
+    } else {
+      dispatch({ type: DECREASE, payload: { id, amount } });
+    }
+  };
   return { remove, increase, decrease };
 };
 

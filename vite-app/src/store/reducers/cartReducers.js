@@ -48,19 +48,14 @@ export const cartReducers = (state = initialState, action) => {
     case DECREASE: {
       console.log('decrease action dispatched', state, action);
       let tempsNewCart = [];
-      tempsNewCart = state.cart
-        .map((item) => {
-          if (item.id === action.payload.id) {
-            if (item.amount > 1) {
-              return { ...item, amount: item.amount - 1 };
-            } else {
-              console.log('item amount is 1, removing item', item);
-              return null; // flag for removal
-            }
+      tempsNewCart = state.cart.map((item) => {
+        if (item.id === action.payload.id) {
+          if (item.amount >= 1) {
+            return { ...item, amount: item.amount - 1 };
           }
-          return item;
-        })
-        .filter((item) => item !== null); // remove null items
+        }
+        return item;
+      });
 
       return {
         ...state,
@@ -82,7 +77,7 @@ export const cartReducers = (state = initialState, action) => {
         },
         { total: 0, amount: 0 }
       );
-      console.log('calculated totals', { total, amount });
+      // console.log('calculated totals', { total, amount });
 
       return { ...state, total: parseFloat(total.toFixed(2)), amount };
     }
