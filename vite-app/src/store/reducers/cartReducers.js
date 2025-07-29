@@ -72,10 +72,12 @@ export const cartReducers = (state = initialState, action) => {
       console.log('get totals action dispatched', state, action);
       const { total, amount } = state.cart.reduce(
         (cartTotal, cartItem) => {
+          // console.log('calculating totals for item', cartItem);
           const { price, amount } = cartItem;
           const itemTotal = price * amount;
           cartTotal.total += itemTotal;
           cartTotal.amount += amount;
+          // console.log('current cartTotal', cartTotal);
           return cartTotal;
         },
         { total: 0, amount: 0 }
